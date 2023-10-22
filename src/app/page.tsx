@@ -4,91 +4,76 @@ import styles from './page.module.css'
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
       <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        <div>
+          <div className={styles.card}>
+            <Image
+              className={styles.img}
+              src="/profile.png"
+              width={100}
+              height={100}
+              alt="Picture"
+            />
+            <h2>
+              SHREDDERxBOY
+            </h2>
+            <p>@SHREDDERxBOY</p>
+            <a
+              href="https://justindavenport.space/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >justindavenport.space</a>
+            <button className={styles.button}>
+              Edit Profile
+            </button>
+          </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+          <div className={styles.card}>
+            <iframe id="sc-widget" width="100%" height="400" className={styles.soundcloud}
+              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1472005231&color=%23d50000&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+          </div>
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+        <div className={styles.card}>
+          <div className={styles.center}>
+            <button className={styles.buttonAdd}>
+              <input type="file"></input>
+            </button>
+          </div>
+          <div className={styles.center}>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+            <h2>
+              Add to your Board.
+            </h2>
+          </div>
+          <div className={styles.grid}>
+            <Image
+              src="/profile.png"
+              width={250}
+              height={250}
+              alt="Picture"
+            />
+            <Image
+              src="/profile.png"
+              width={250}
+              height={250}
+              alt="Picture"
+            />
+            <Image
+              src="/profile.png"
+              width={250}
+              height={250}
+              alt="Picture"
+            />
+            <Image
+              src="/profile.png"
+              width={250}
+              height={250}
+              alt="Picture"
+            />
+          </div>
+        </div>
       </div>
     </main>
   )
