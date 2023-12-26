@@ -1,80 +1,64 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { useEffect, useState } from "react";
+import { Form } from "./FormParts/Form";
+import { List } from "./FormParts/List";
 
 export default function Home() {
+  const [todos, setTodos] = useState<any[]>(() => {
+    if (typeof window !== "undefined") {
+      const localValue = localStorage.getItem("ITEMS");
+      if (localValue == null) return [];
+
+      return JSON.parse(localValue);
+    } else {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("ITEMS", JSON.stringify(todos));
+    }
+  }, [todos]);
+
+  function addTodo(title: any) {
+    setTodos((currentTodos) => {
+      return [
+        ...currentTodos,
+        {
+          id: crypto.randomUUID(),
+          title,
+          completed: false,
+        },
+      ];
+    });
+  }
+
+  function toggleTodo(id: any, completed: any) {
+    setTodos((currentTodos) => {
+      return currentTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed };
+        }
+        return todo;
+      });
+    });
+  }
+
+  function deleteTodo(id: any) {
+    setTodos((currentTodos) => {
+      return currentTodos.filter((todo) => todo.id !== id);
+    });
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.center}>
-
-        <div>
-          <div className={styles.card}>
-            <Image
-              className={styles.img}
-              src="/profile.png"
-              width={100}
-              height={100}
-              alt="Picture"
-            />
-            <h2>
-              SHREDDERxBOY
-            </h2>
-            <p>@SHREDDERxBOY</p>
-            <a
-              href="https://justindavenport.space/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >justindavenport.space</a>
-            <button className={styles.button}>
-              Edit Profile
-            </button>
-          </div>
-
-          <div className={styles.card}>
-            <iframe id="sc-widget" width="100%" height="400" className={styles.soundcloud}
-              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1472005231&color=%23d50000&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-          </div>
-        </div>
-
-        <div className={styles.card}>
-          <div className={styles.center}>
-            <button className={styles.buttonAdd}>
-              <input type="file"></input>
-            </button>
-          </div>
-          <div className={styles.center}>
-
-            <h2>
-              Add to your Board.
-            </h2>
-          </div>
-          <div className={styles.grid}>
-            <Image
-              src="/profile.png"
-              width={250}
-              height={250}
-              alt="Picture"
-            />
-            <Image
-              src="/profile.png"
-              width={250}
-              height={250}
-              alt="Picture"
-            />
-            <Image
-              src="/profile.png"
-              width={250}
-              height={250}
-              alt="Picture"
-            />
-            <Image
-              src="/profile.png"
-              width={250}
-              height={250}
-              alt="Picture"
-            />
-          </div>
-        </div>
+    <main>
+      <div className="form-holder">
+        <Form onSubmit={addTodo} />
+      </div>
+      <div>
+        <List todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
       </div>
     </main>
-  )
+  );
 }
